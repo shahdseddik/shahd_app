@@ -31,4 +31,14 @@ class ApiClient {
       return null;
     }
   }
+  Future<Map<String, dynamic>?> createPost(Map<String, dynamic> data) async {
+  try {
+    final response = await _dio.post('/posts', data: data);
+    return response.data;
+  } catch (e) {
+    print('Error creating post: $e');
+    return null;
+  }
 }
+}
+

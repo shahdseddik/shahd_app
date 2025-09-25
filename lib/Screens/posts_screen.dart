@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shahd_app/Screens/create_post_screen.dart';
 import 'package:shahd_app/Screens/post_details_screen.dart';
 import 'package:shahd_app/api_client.dart';
 
@@ -50,7 +51,19 @@ class _PostsScreenState extends State<PostsScreen> {
                   },
                 );
               },
+              
             ),
+            floatingActionButton: FloatingActionButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CreatePostScreen()),
+        );
+      },
+      child: const Icon(Icons.add),
+    ),
+            
     );
+    
   }
 }
