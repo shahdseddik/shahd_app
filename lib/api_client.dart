@@ -5,40 +5,8 @@ class ApiClient {
 
   ApiClient()
       : _dio = Dio(
-          BaseOptions(
-            baseUrl: 'https://jsonplaceholder.typicode.com/',
-          ),
+          BaseOptions(baseUrl: 'https://jsonplaceholder.typicode.com'),
         );
 
-
-  Future<List<dynamic>> getPosts() async {
-    try {
-      Response response = await _dio.get('/posts');
-      return response.data; 
-    } catch (e) {
-      print('Error fetching posts: $e');
-      return [];
-    }
-  }
-
-
-  Future<Map<String, dynamic>?> getPostDetails(int postId) async {
-    try {
-      Response response = await _dio.get('/posts/$postId');
-      return response.data; 
-    } catch (e) {
-      print('Error fetching post details: $e');
-      return null;
-    }
-  }
-  Future<Map<String, dynamic>?> createPost(Map<String, dynamic> data) async {
-  try {
-    final response = await _dio.post('/posts', data: data);
-    return response.data;
-  } catch (e) {
-    print('Error creating post: $e');
-    return null;
-  }
+  Dio get dio => _dio;
 }
-}
-

@@ -1,69 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:shahd_app/Screens/create_post_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shahd_app/Screens/post_details_screen.dart';
-import 'package:shahd_app/api_client.dart';
+import 'create_post_screen.dart';
+import 'package:shahd_app/post_providers.dart';
 
-class PostsScreen extends StatefulWidget {
+class PostsScreen extends ConsumerWidget {
   const PostsScreen({super.key});
 
   @override
-  _PostsScreenState createState() => _PostsScreenState();
-}
-class _PostsScreenState extends State<PostsScreen> {
-  ApiClient apiClient = ApiClient(); 
-  List<dynamic> posts = [];          
-  bool isLoading = true;             
+  Widget build(BuildContext context, WidgetRef ref) {
+    final postsAsync = ref.watch(postsProvider);
 
-  @override
-  void initState() {
-    super.initState();
-    fetchPosts(); 
-  }
-
-  
-  Future<void> fetchPosts() async {
-    final data = await apiClient.getPosts();
-    setState(() {
-      posts = data;
-      isLoading = false; 
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Posts')),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator()) 
-          : ListView.builder(
-              itemCount: posts.length,
-              itemBuilder: (context, index) {
-                final post = posts[index]; 
-                return ListTile(
-                  title: Text(post['title']),
-                  onTap: () {
-                  Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PostDetailsScreen(postId: post['id']),
-      ),
-    );
-                  },
+      body: postsAsync.when(
+        data: (posts) => ListView.builder(
+          itemCount: posts.length,
+          itemBuilder: (context, index) {
+            final post = posts[index];
+            return ListTile(
+              title: Text(post['title']),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => PostDetailsScreen(postId: post['id']),
+                  ),
                 );
               },
-              
-            ),
-            floatingActionButton: FloatingActionButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const CreatePostScreen()),
-        );
-      },
-      child: const Icon(Icons.add),
-    ),
-            
+            );
+          },
+        ),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(child: Text('Error: $err')),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const CreatePostScreen()),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
     );
-    
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shahd_app/Screens/posts_screen.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'Screens/posts_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,8 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const PostsScreen(), 
+      home: const PostsScreen(),
     );
   }
 }
-
