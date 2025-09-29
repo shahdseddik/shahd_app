@@ -20,9 +20,9 @@ class PostDetailsScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(post['title'], style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    Text(post.title ?? 'No Title' , style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10),
-                    Text(post['body']),
+                    Text(post.body ?? 'No Body', style: const TextStyle(fontSize: 16)),
                   ],
                 ),
               ),

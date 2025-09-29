@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shahd_app/post_model.dart';
 import 'package:shahd_app/post_providers.dart';
 
 
@@ -34,10 +35,9 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
       _isLoading = true;
     });
 
-    final post = await ref.read(postRepositoryProvider).createPost(data);
+    final PostModel? post = await ref.read(postRepositoryProvider).createPost(data);
 
-    if (!mounted) return; // ⚡ حماية ضد استخدام context بعد async
-
+    if (!mounted) return; 
     setState(() {
       _isLoading = false;
     });
