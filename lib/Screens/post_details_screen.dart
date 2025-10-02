@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shahd_app/post_providers.dart';
+import 'package:shahd_app/providers/post_providers.dart';
 
 class PostDetailsScreen extends ConsumerWidget {
   final int postId;

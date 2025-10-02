@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shahd_app/post_model.dart';
-import 'package:shahd_app/post_providers.dart';
+import 'package:shahd_app/data/models/post_model.dart';
+import 'package:shahd_app/providers/post_providers.dart';
 
 
 class CreatePostScreen extends ConsumerStatefulWidget {

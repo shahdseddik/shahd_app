@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shahd_app/post_providers.dart';
-import 'package:shahd_app/post_model.dart';
+import 'package:shahd_app/Screens/create_post_screen.dart';
+import 'package:shahd_app/Screens/post_details_screen.dart';
+import 'package:shahd_app/providers/post_providers.dart';
+import 'package:shahd_app/data/models/post_model.dart';
 
 class PostsScreen extends ConsumerWidget {
   const PostsScreen({super.key});
@@ -11,7 +13,21 @@ class PostsScreen extends ConsumerWidget {
     final postsAsync = ref.watch(postsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Posts")),
+      appBar: AppBar(
+        title: const Text("Posts"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CreatePostScreen()),
+        );
+      },
+    ),
+  ],
+),
+
       body: postsAsync.when(
         data: (posts) {
           return ListView.builder(
@@ -20,8 +36,16 @@ class PostsScreen extends ConsumerWidget {
               final PostModel post = posts[index];
               return ListTile(
                 title: Text(post.title ?? 'No Title'),
-                subtitle: Text(post.body ?? 'No Body'),
-              );
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PostDetailsScreen(postId: post.id!),
+      ),
+    );
+  },
+);
+
             },
           );
         },
