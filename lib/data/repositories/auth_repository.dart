@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:shahd_app/data/api_client.dart';
-import 'package:shahd_app/data/models/user_model';
-import 'package:shahd_app/data/storage/scure_storage.dart';
+import 'package:shahd_app/data/models/user_model.dart';
+import 'package:shahd_app/data/storage/secure_storage.dart';
 
 class AuthRepository {
   final ApiClient apiClient;

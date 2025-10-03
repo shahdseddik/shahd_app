@@ -4,6 +4,7 @@ import 'package:shahd_app/config/app_config.dart';
 import 'package:shahd_app/data/api_client.dart';
 import 'package:shahd_app/data/repositories/auth_repository.dart';
 import 'package:shahd_app/data/repositories/post_repository.dart';
+import 'package:shahd_app/data/storage/secure_storage.dart';
 
 
 class AuthState {
@@ -25,7 +26,15 @@ class AuthState {
 class AuthNotifier extends StateNotifier<AuthState> {
   final AuthRepository authRepository;
 
-  AuthNotifier(this.authRepository) : super(AuthState());
+  AuthNotifier(this.authRepository) : super(AuthState()){
+    _checkLoginStatus();
+  }
+  Future<void> _checkLoginStatus() async {
+    final token = await SecureStorage.readToken();
+    if (token != null) {
+      state = state.copyWith(isLoggedIn: true);
+    }
+  }
 
   Future<void> login(String email, String password) async {
     state = state.copyWith(isLoading: true, errorMessage: null);

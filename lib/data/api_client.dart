@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:shahd_app/data/storage/scure_storage.dart';
+import 'package:shahd_app/data/storage/secure_storage.dart';
 
 
 class ApiClient {

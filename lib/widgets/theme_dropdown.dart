@@ -16,6 +16,7 @@ class ThemeDropdown extends ConsumerWidget {
       items: const [
         DropdownMenuItem(value: ThemeMode.light, child: Text('Light')),
         DropdownMenuItem(value: ThemeMode.dark, child: Text('Dark')),
+        DropdownMenuItem(value: ThemeMode.system, child: Text('System')),
       ],
       onChanged: (newMode) {
         if (newMode != null) {
