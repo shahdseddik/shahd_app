@@ -34,7 +34,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
-
+    
     return Scaffold(
       appBar: AppBar(title: const Text("Login")),
       body: Center(

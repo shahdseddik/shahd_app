@@ -4,6 +4,7 @@ import 'package:shahd_app/Screens/create_post_screen.dart';
 import 'package:shahd_app/Screens/post_details_screen.dart';
 import 'package:shahd_app/providers/post_providers.dart';
 import 'package:shahd_app/data/models/post_model.dart';
+import 'package:shahd_app/widgets/theme_dropdown.dart';
 
 class PostsScreen extends ConsumerWidget {
   const PostsScreen({super.key});
@@ -16,6 +17,7 @@ class PostsScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text("Posts"),
         actions: [
+          const ThemeDropdown(),
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
