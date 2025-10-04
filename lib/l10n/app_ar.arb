@@ -1,0 +1,21 @@
+{
+  "@@locale": "ar",
+  "login": "تسجيل الدخول",
+  "email": "البريد الإلكتروني",
+  "enterEmail": "أدخل البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "enterPassword": "أدخل كلمة المرور",
+  "posts": "المقالات",
+  "createPost": "إنشاء مقال",
+  "title": "العنوان",
+  "body": "المحتوى",
+  "submit": "إرسال",
+  "failedToCreatePost": "فشل في إنشاء المقال",
+  "postCreated": "تم إنشاء المقال!",
+  "dark": "داكن",
+  "light": "فاتح",
+  "system": "النظام",
+  "english":"الانجليزية",
+  "arabic":"العربية"
+}
+

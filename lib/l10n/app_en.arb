@@ -1,0 +1,20 @@
+{
+  "@@locale": "en",
+  "login": "Login",
+  "email": "Email",
+  "enterEmail": "Enter email",
+  "password": "Password",
+  "enterPassword": "Enter password",
+  "posts": "Posts",
+  "createPost": "Create Post",
+  "title": "Title",
+  "body": "Body",
+  "submit": "Submit",
+  "failedToCreatePost": "Failed to create post.",
+  "postCreated": "Post created!",
+  "dark": "Dark",
+  "light": "Light",
+  "system": "System",
+  "english": "English",
+  "arabic": "Arabic"
+}

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shahd_app/l10n/app_localizations.dart';
 import 'package:shahd_app/providers/auth_provider.dart';
+import 'package:shahd_app/widgets/language_selector.dart';
+import 'package:shahd_app/widgets/theme_dropdown.dart';
 import 'posts_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -34,9 +37,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
-    
+    final loc = AppLocalizations.of(context)!;
+
     return Scaffold(
-      appBar: AppBar(title: const Text("Login")),
+      appBar: AppBar(
+        title: Text(loc.posts),
+        actions: [
+          const ThemeDropdown(),
+          const LanguageSelector(),
+  ],
+),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -47,22 +57,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               children: [
                 TextFormField(
                   controller: _emailController,
-                  decoration: const InputDecoration(labelText: "Email"),
-                  validator: (value) => value!.isEmpty ? "Enter email" : null,
+                  decoration: InputDecoration(labelText: loc.email),
+                  validator: (value) => value!.isEmpty ? loc.enterEmail : null,
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _passwordController,
-                  decoration: const InputDecoration(labelText: "Password"),
+                  decoration: InputDecoration(labelText: loc.password),
                   obscureText: true,
-                  validator: (value) => value!.isEmpty ? "Enter password" : null,
+                  validator: (value) => value!.isEmpty ? loc.enterPassword : null,
                 ),
                 const SizedBox(height: 20),
                 authState.isLoading
                     ? const CircularProgressIndicator()
                     : ElevatedButton(
                         onPressed: _login,
-                        child: const Text("Submit"),
+                        child: Text(loc.submit),
                       ),
                 if (authState.errorMessage != null)
                   Padding(

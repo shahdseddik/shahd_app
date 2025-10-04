@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shahd_app/data/models/post_model.dart';
+import 'package:shahd_app/l10n/app_localizations.dart';
 import 'package:shahd_app/providers/post_providers.dart';
 
 
@@ -14,7 +15,7 @@ class CreatePostScreen extends ConsumerStatefulWidget {
 class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
   final _titleController = TextEditingController();
   final _bodyController = TextEditingController();
-
+  
   bool _isLoading = false;
 
   @override
@@ -41,39 +42,41 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
     setState(() {
       _isLoading = false;
     });
-
+    final loc = AppLocalizations.of(context)!; 
     if (post != null) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Post created!")));
+          .showSnackBar(SnackBar(content: Text(loc.postCreated)));
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Failed to create post.")));
+          .showSnackBar(SnackBar(content: Text(loc.failedToCreatePost)));
     }
   }
 
   @override
   Widget build(BuildContext context) {
+  final loc = AppLocalizations.of(context)!;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Create Post')),
+      appBar: AppBar(title: Text(loc.createPost)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
               controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Title'),
+              decoration: InputDecoration(labelText: loc.title),
             ),
             TextField(
               controller: _bodyController,
-              decoration: const InputDecoration(labelText: 'Body'),
+              decoration: InputDecoration(labelText: loc.body),
             ),
             const SizedBox(height: 20),
             _isLoading
                 ? const CircularProgressIndicator()
                 : ElevatedButton(
                     onPressed: _submitPost,
-                    child: const Text("Submit"),
+                    child: Text(loc.submit),
                   ),
           ],
         ),
