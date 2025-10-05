@@ -5,8 +5,6 @@ import 'package:shahd_app/data/api_client.dart';
 import 'package:shahd_app/data/repositories/auth_repository.dart';
 import 'package:shahd_app/data/repositories/post_repository.dart';
 import 'package:shahd_app/data/storage/secure_storage.dart';
-
-
 class AuthState {
   final bool isLoading;
   final bool isLoggedIn;
@@ -49,8 +47,17 @@ class AuthNotifier extends StateNotifier<AuthState> {
       state = state.copyWith(isLoading: false, errorMessage: e.toString());
     }
   }
+  Future<void> logout() async {
+    state = state.copyWith(isLoading: true, errorMessage: null);
+    try {
+      await authRepository.logout();
+      state = state.copyWith(isLoading: false, isLoggedIn: false);
+    } catch (e) {
+      state = state.copyWith(isLoading: false, errorMessage: e.toString());
+    }
+  }
 }
-final authApiClientProvider = Provider((ref) => ApiClient(baseUrl: AppConfig.authBaseUrl));
+final authApiClientProvider = Provider((ref) => ApiClient(baseUrl: AppConfig.baseUrl));
 final postsApiClientProvider = Provider((ref) => ApiClient(baseUrl: AppConfig.postsBaseUrl));
 
 final authRepositoryProvider = Provider((ref) => AuthRepository(apiClient: ref.read(authApiClientProvider)));

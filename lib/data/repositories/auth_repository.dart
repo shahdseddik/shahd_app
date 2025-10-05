@@ -37,6 +37,14 @@ class AuthRepository {
     }
     throw Exception("Login failed: $e");
   }
+  
 }
+   Future<void> logout() async {
+    try {
+      await SecureStorage.deleteToken();
 
+    } catch (e) {
+      throw Exception("Logout failed: $e");
+    }
+}
 }

@@ -16,5 +16,10 @@
   "light": "Light",
   "system": "System",
   "english": "English",
-  "arabic": "Arabic"
+  "list": "List",
+  "theme": "Theme",
+  "subjects": "Subjects",
+  "logout":"Logout",
+  "arabic": "Arabic",
+  "language": "language"
 }

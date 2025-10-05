@@ -10,24 +10,19 @@ class LanguageSelector extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(localeNotifierProvider);
     final loc = AppLocalizations.of(context)!;
-    
+
     return DropdownButton<String>(
       value: locale.languageCode,
+      icon: const Icon(Icons.language, color: Color.fromARGB(255, 193, 122, 251)),
+      items: [
+        DropdownMenuItem(value: 'en', child: Text(loc.english)),
+        DropdownMenuItem(value: 'ar', child: Text(loc.arabic)),
+      ],
       onChanged: (value) {
         if (value != null) {
           ref.read(localeNotifierProvider.notifier).setLocale(value);
         }
       },
-      items: [
-        DropdownMenuItem(
-          value: 'en',
-          child: Text(loc.english),
-        ),
-        DropdownMenuItem(
-          value: 'ar',
-          child: Text(loc.arabic),
-        ),
-      ],
     );
   }
 }

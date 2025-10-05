@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shahd_app/l10n/app_localizations.dart';
 import 'package:shahd_app/providers/auth_provider.dart';
-import 'package:shahd_app/widgets/language_selector.dart';
-import 'package:shahd_app/widgets/theme_dropdown.dart';
 import 'posts_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -41,11 +39,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(loc.posts),
-        actions: [
-          const ThemeDropdown(),
-          const LanguageSelector(),
-  ],
+        title: Text(loc.login),
 ),
       body: Center(
         child: Padding(

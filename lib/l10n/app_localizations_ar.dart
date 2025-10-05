@@ -57,5 +57,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get english => 'الانجليزية';
 
   @override
+  String get list => 'القائمة';
+
+  @override
+  String get theme => 'الثيم';
+
+  @override
+  String get subjects => 'المواد';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
   String get arabic => 'العربية';
+
+  @override
+  String get language => 'اللغة';
 }

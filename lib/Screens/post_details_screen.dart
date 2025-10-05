@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shahd_app/providers/post_providers.dart';
+import 'package:shahd_app/widgets/app_drawer.dart';
 
 class PostDetailsScreen extends ConsumerWidget {
   final int postId;
@@ -29,6 +30,7 @@ class PostDetailsScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),
+      drawer: const AppDrawer(),
     );
   }
 }

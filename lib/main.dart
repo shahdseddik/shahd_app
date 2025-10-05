@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shahd_app/Screens/login_screen.dart';
 import 'package:shahd_app/l10n/app_localizations.dart';
-import 'package:shahd_app/providers/auth_provider.dart';
+import 'package:shahd_app/providers/go_router_provider.dart';
 import 'package:shahd_app/providers/locale_notifier.dart';
 import 'package:shahd_app/providers/theme_notifier.dart';
-import 'Screens/posts_screen.dart';
-
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -19,10 +16,10 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeProvider);
     final locale = ref.watch(localeNotifierProvider);
-    final authState = ref.watch(authProvider);
+    final router = ref.watch(routerProvider); 
 
     
-        return MaterialApp(
+        return MaterialApp.router(
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [
           AppLocalizations.delegate,
@@ -39,9 +36,8 @@ class MyApp extends ConsumerWidget {
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
         themeMode: themeMode,
-        home: authState.isLoggedIn
-            ? const PostsScreen()
-            : const LoginScreen(),
+        routerConfig: router,
+
     );
   }
 }

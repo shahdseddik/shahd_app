@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shahd_app/data/models/post_model.dart';
 import 'package:shahd_app/l10n/app_localizations.dart';
 import 'package:shahd_app/providers/post_providers.dart';
+import 'package:shahd_app/widgets/app_drawer.dart';
 
 
 class CreatePostScreen extends ConsumerStatefulWidget {
@@ -81,6 +82,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
           ],
         ),
       ),
+      drawer: const AppDrawer(),
     );
   }
 }

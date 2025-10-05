@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shahd_app/Screens/create_post_screen.dart';
 import 'package:shahd_app/Screens/post_details_screen.dart';
 import 'package:shahd_app/l10n/app_localizations.dart';
 import 'package:shahd_app/providers/post_providers.dart';
 import 'package:shahd_app/data/models/post_model.dart';
-import 'package:shahd_app/widgets/theme_dropdown.dart';
+import 'package:shahd_app/widgets/app_drawer.dart';
 
 class PostsScreen extends ConsumerWidget {
   const PostsScreen({super.key});
@@ -18,11 +17,7 @@ class PostsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(loc.posts),
-        actions: [
-          const ThemeDropdown(),
-  ],
-),
-
+      ),
       body: postsAsync.when(
         data: (posts) {
           return ListView.builder(
@@ -40,22 +35,13 @@ class PostsScreen extends ConsumerWidget {
     );
   },
 );
-
-            },
-          );
-        },
+},
+);
+},
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text("Error: $err")),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const CreatePostScreen()),
-          );
-        },
-        child: const Icon(Icons.add),
-      ),
+      drawer: const AppDrawer(),
     );
   }
 }
