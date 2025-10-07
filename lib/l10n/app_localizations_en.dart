@@ -72,5 +72,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get arabic => 'Arabic';
 
   @override
+  String get privacyPolicy => 'privacy Policy';
+
+  @override
   String get language => 'language';
 }

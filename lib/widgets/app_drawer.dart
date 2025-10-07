@@ -59,6 +59,14 @@ class AppDrawer extends ConsumerWidget {
               context.go('/login');
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.privacy_tip),
+            title: Text(loc.privacyPolicy),
+            onTap: () {
+              Navigator.pop(context);
+              context.go('/privacy-policy');
+            },
+          ),
           const Divider(),
 
           // Theme Section

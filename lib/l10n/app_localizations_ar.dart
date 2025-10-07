@@ -72,5 +72,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get arabic => 'العربية';
 
   @override
+  String get privacyPolicy => 'سياسة الخصوصية';
+
+  @override
   String get language => 'اللغة';
 }

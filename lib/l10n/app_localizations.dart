@@ -221,6 +221,12 @@ abstract class AppLocalizations {
   /// **'Arabic'**
   String get arabic;
 
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'privacy Policy'**
+  String get privacyPolicy;
+
   /// No description provided for @language.
   ///
   /// In en, this message translates to:
